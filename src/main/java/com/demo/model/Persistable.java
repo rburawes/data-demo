@@ -1,5 +1,7 @@
 package com.demo.model;
 
+import com.demo.model.listener.TimestampListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.Date;
  */
 @SuppressWarnings("serial")
 @MappedSuperclass
+@EntityListeners(value = TimestampListener.class)
 public abstract class Persistable implements Serializable{
 
     /**

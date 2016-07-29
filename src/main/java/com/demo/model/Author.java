@@ -1,10 +1,7 @@
 package com.demo.model;
 
-import com.demo.model.listener.TimestampListener;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 
 /**
@@ -12,7 +9,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "author")
-@EntityListeners(value = TimestampListener.class)
 public class Author extends Modifiable {
 
     @Column(name = "giver_name", nullable = false)

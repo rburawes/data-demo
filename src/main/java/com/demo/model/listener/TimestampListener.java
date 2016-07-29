@@ -8,7 +8,7 @@ import javax.persistence.PreUpdate;
 import java.util.Date;
 
 /**
- * External timestamp updater. Seems more reliable way of setting the time for the entity.
+ * Sets the dates for {@link Persistable#timeCreated} and {@link Modifiable#timeUpdated}.
  *
  * @author rburawes
  */
@@ -23,7 +23,7 @@ public class TimestampListener {
     }
 
     /**
-     * Sets the entity timeF before the persist process.
+     * Sets the entity timeF before the update process.
      */
     @PreUpdate
     public void preUpdate(Modifiable modifiable) {

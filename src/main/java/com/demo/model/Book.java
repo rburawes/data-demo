@@ -1,6 +1,5 @@
 package com.demo.model;
 
-import com.demo.model.listener.TimestampListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.util.List;
 @Table(name = "book")
 @NamedEntityGraphs(
     @NamedEntityGraph(name = "Book.summary", attributeNodes = { @NamedAttributeNode("id"), @NamedAttributeNode("title") }))
-@EntityListeners(value = TimestampListener.class)
 @JsonIgnoreProperties(value = { "authors" })
 public class Book extends Modifiable {
 

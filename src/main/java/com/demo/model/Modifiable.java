@@ -1,5 +1,7 @@
 package com.demo.model;
 
+import com.demo.model.listener.TimestampListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,6 +9,7 @@ import java.util.Date;
  * Represents the object that can be updated.
  */
 @MappedSuperclass
+@EntityListeners(value = TimestampListener.class)
 public class Modifiable extends Persistable {
 
     /**
