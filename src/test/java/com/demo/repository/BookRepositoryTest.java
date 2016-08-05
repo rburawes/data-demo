@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
 
 /**
  * Test things on {@link BookRepository}.
+ *
+ * @author rburawes
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest

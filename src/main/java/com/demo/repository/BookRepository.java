@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Holds the CRUD operations for {@link Book} entity.
+ *
+ * @author rburawes
  */
 public interface BookRepository extends CrudRepository<Book, Long> {
 

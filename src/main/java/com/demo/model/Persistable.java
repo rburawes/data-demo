@@ -11,6 +11,8 @@ import java.util.Date;
 
 /**
  * The base class of all objects within the model.
+ *
+ * @author rburawes
  */
 @SuppressWarnings("serial")
 @MappedSuperclass

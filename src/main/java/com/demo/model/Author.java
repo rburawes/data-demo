@@ -6,6 +6,8 @@ import javax.persistence.Table;
 
 /**
  * Holds the {@link Author} details associated with the {@link Book}.
+ *
+ * @author rburawes
  */
 @Entity
 @Table(name = "author")

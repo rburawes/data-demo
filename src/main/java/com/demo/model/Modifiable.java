@@ -8,6 +8,8 @@ import java.util.Date;
 
 /**
  * Represents the object that can be updated.
+ *
+ * @author rburawes
  */
 @MappedSuperclass
 @EntityListeners(value = TimestampListener.class)

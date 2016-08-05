@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Holds the details of book.
+ *
+ * @author Rae Burawes
  */
 @Entity
 @Table(name = "book")

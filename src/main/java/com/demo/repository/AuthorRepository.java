@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * Holds the CRUD operations for {@link Author} entity.
+ *
+ * @author rburawes
  */
 public interface AuthorRepository extends CrudRepository<Author, Long> {
 

@@ -20,7 +20,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
- * Test things on {@link BookSearchRepository}
+ * Test things on {@link BookSearchRepository}.
+ *
+ * @author rburawes
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
