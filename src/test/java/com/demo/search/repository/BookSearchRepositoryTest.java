@@ -1,5 +1,6 @@
 package com.demo.search.repository;
 
+import com.demo.DataDemoApplication;
 import com.demo.model.Author;
 import com.demo.model.Book;
 import org.junit.Before;
@@ -25,7 +26,7 @@ import static org.junit.Assert.assertThat;
  * @author rburawes
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = DataDemoApplication.class)
 public class BookSearchRepositoryTest {
 
     @Autowired
@@ -44,11 +45,10 @@ public class BookSearchRepositoryTest {
         elasticsearchTemplate.createIndex(Book.class);
         elasticsearchTemplate.putMapping(Book.class);
         elasticsearchTemplate.refresh(Book.class);
-
     }
 
     @Test
-    public void shouldBookDocumentWitRepository(){
+    public void shouldBookDocumentWitRepository() {
 
         Date dateNow = new Date(System.currentTimeMillis());
 
@@ -79,6 +79,5 @@ public class BookSearchRepositoryTest {
         assertThat(indexedBook, is(notNullValue()));
         assertThat(indexedBook.getId(), is(book.getId()));
         assertThat(bookRepository.findOne(1l), is(notNullValue()));
-
     }
 }

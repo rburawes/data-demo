@@ -1,5 +1,6 @@
 package com.demo.repository;
 
+import com.demo.DataDemoApplication;
 import com.demo.model.Author;
 import com.demo.model.Book;
 import org.junit.Assert;
@@ -7,15 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Test things on {@link BookRepository}.
@@ -23,10 +24,9 @@ import static org.junit.Assert.*;
  * @author rburawes
  */
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest(classes = DataDemoApplication.class)
 @Transactional
 public class BookRepositoryTest {
-
 
     @Autowired
     private BookRepository bookRepository;
@@ -59,7 +59,6 @@ public class BookRepositoryTest {
 
         Book book = bookRepository.getBookByTitle("Programming in Scala");
         Assert.assertTrue(book != null);
-
     }
 
     @Test
@@ -69,7 +68,6 @@ public class BookRepositoryTest {
         bookRepository.findAll().forEach(books::add);
         Assert.assertTrue(books != null);
         assertThat(books.size(), is(1));
-
     }
 
     @Test
@@ -81,7 +79,6 @@ public class BookRepositoryTest {
 
         Assert.assertTrue(modifiedBook != null);
         Assert.assertTrue(book.getTitle().equals("Programming in Scala 2nd Edition"));
-
     }
 
     @Test
@@ -91,6 +88,5 @@ public class BookRepositoryTest {
         bookRepository.delete(book);
 
         Assert.assertTrue(bookRepository.findAll().iterator().hasNext() == false);
-
     }
 }

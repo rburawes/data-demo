@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableElasticsearchRepositories(basePackages = "com.demo.search.repository")
 public class DataDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DataDemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DataDemoApplication.class, args);
+    }
 }
