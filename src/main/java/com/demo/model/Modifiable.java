@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import com.demo.model.listener.TimestampListener;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Modifiable extends Persistable {
     @Version
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time_updated")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeUpdated;
 
     /**
@@ -35,5 +37,4 @@ public class Modifiable extends Persistable {
     public void setTimeUpdated(Date timeUpdated) {
         this.timeUpdated = timeUpdated;
     }
-
 }

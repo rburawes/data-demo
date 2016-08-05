@@ -1,5 +1,6 @@
 package com.demo.search.repository;
 
+import com.demo.model.Author;
 import com.demo.model.Book;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -33,22 +36,35 @@ public class BookSearchRepositoryTest {
     private RestTemplate restTemplate;
 
     @Before
-
     public void before() {
 
         elasticsearchTemplate.deleteIndex(Book.class);
         elasticsearchTemplate.createIndex(Book.class);
         elasticsearchTemplate.putMapping(Book.class);
         elasticsearchTemplate.refresh(Book.class);
+
     }
 
     @Test
-    public void shouldCreateSingleBookEntityWitRepository(){
+    public void shouldBookDocumentWitRepository(){
+
+        Date dateNow = new Date(System.currentTimeMillis());
 
         //given
         Book book = new Book();
-        book.setBookId("1");
+        book.setId(1);
         book.setTitle("Learning Scala");
+        book.setTimeCreated(dateNow);
+        book.setTimeUpdated(dateNow);
+
+        Author author = new Author();
+        author.setId(1);
+        author.setFamilyName("Swartz");
+        author.setGivenName("Jason");
+        author.setTimeCreated(dateNow);
+        author.setTimeUpdated(dateNow);
+
+        book.getAuthors().add(author);
 
         //when
         Book indexedBook = bookRepository.save(book);
@@ -59,7 +75,8 @@ public class BookSearchRepositoryTest {
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
 
         assertThat(indexedBook, is(notNullValue()));
-        assertThat(indexedBook.getBookId(), is(book.getBookId()));
-        assertThat(bookRepository.findOne("1"), is(notNullValue()));
+        assertThat(indexedBook.getId(), is(book.getId()));
+        assertThat(bookRepository.findOne(1l), is(notNullValue()));
+
     }
 }

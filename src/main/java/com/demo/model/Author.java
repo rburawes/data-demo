@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Holds the details associated with the {@link Book}.
+ * Holds the {@link Author} details associated with the {@link Book}.
  */
 @Entity
 @Table(name = "author")

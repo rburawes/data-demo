@@ -1,6 +1,9 @@
 package com.demo.model;
 
 import com.demo.model.listener.TimestampListener;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,19 +15,20 @@ import java.util.Date;
 @SuppressWarnings("serial")
 @MappedSuperclass
 @EntityListeners(value = TimestampListener.class)
-public abstract class Persistable implements Serializable{
+public abstract class Persistable implements Serializable {
 
     /**
      * The unique value that identifies the entity.
      */
-    @org.springframework.data.annotation.Transient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
+    @Field(type = FieldType.Long)
     private long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time_created", nullable = false, updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeCreated;
 
     /**
@@ -32,7 +36,7 @@ public abstract class Persistable implements Serializable{
      */
     @Override
     public int hashCode() {
-        return id == 0 ? super.hashCode() : getClass().hashCode() ^ Long.valueOf(id).hashCode();
+        return id == 0 ? super.hashCode() : getClass().hashCode() ^ new Long(id).hashCode();
     }
 
     /**
