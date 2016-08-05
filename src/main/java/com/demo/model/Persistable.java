@@ -17,6 +17,7 @@ public abstract class Persistable implements Serializable{
     /**
      * The unique value that identifies the entity.
      */
+    @org.springframework.data.annotation.Transient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
