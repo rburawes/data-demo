@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * @author rburawes
  */
 @Entity
-@Table(name = "author")
+@Table(name = "author", schema = "store")
 public class Author extends Modifiable {
 
     @Column(name = "giver_name", nullable = false)

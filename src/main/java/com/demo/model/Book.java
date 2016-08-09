@@ -11,12 +11,19 @@ import java.util.List;
 /**
  * Holds the details of book.
  *
- * @author Rae Burawes
+ * @author rburawes
  */
 @Entity
-@Table(name = "book")
+@Table(name = "book", schema = "store")
 @NamedEntityGraphs(
     @NamedEntityGraph(name = "Book.summary", attributeNodes = { @NamedAttributeNode("id"), @NamedAttributeNode("title") }))
+
+@NamedStoredProcedureQuery(name = "Book.details",
+    procedureName = "store.get_book_details",
+    resultClasses = Book.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, type = void.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class)})
 @Document(indexName = "store", type = "book")
 public class Book extends Modifiable {
 

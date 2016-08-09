@@ -1,7 +1,6 @@
 package com.demo.repository;
 
 import com.demo.model.Author;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
@@ -10,9 +9,7 @@ import java.util.List;
  *
  * @author rburawes
  */
-public interface AuthorRepository extends CrudRepository<Author, Long> {
+public interface AuthorRepository extends CustomRepository<Author, Long> {
 
     List<Author> findByFamilyName(String name);
 }
-
-
